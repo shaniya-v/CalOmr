@@ -11,11 +11,12 @@ import os
 from pathlib import Path
 
 from main import CalOmrPipeline
+from enhanced_pipeline import EnhancedCalOmrPipeline
 
 app = FastAPI(
     title="CalOmr API",
-    description="AI-powered STEM question solver with RAG",
-    version="1.0.0"
+    description="AI-powered STEM question solver with RAG and web search",
+    version="2.0.0"
 )
 
 # Enable CORS
@@ -27,16 +28,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize pipeline (singleton)
+# Initialize pipelines (singleton)
 pipeline = None
+enhanced_pipeline = None
 
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize pipeline on startup"""
-    global pipeline
+    """Initialize pipelines on startup"""
+    global pipeline, enhanced_pipeline
     print("🚀 Starting CalOmr API...")
     pipeline = CalOmrPipeline()
+    enhanced_pipeline = EnhancedCalOmrPipeline()
     print("✓ API ready!")
 
 
@@ -99,6 +102,52 @@ async def solve_question(
         
     except Exception as e:
         if os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/solve-all")
+async def solve_all_questions(file: UploadFile = File(...)):
+    """
+    Solve ALL questions from an uploaded image
+    
+    Strategy:
+    1. Parse all questions from image
+    2. For each question:
+       - Check database cache
+       - Search web for exact match
+       - Calculate with AI if needed
+    3. Return all solutions
+    
+    Args:
+        file: Image containing multiple questions
+        
+    Returns:
+        List of solutions for all questions
+    """
+    if not enhanced_pipeline:
+        raise HTTPException(status_code=503, detail="Enhanced pipeline not ready")
+    
+    # Validate file type
+    if not file.content_type.startswith('image/'):
+        raise HTTPException(status_code=400, detail="File must be an image")
+    
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.jpg') as tmp:
+            content = await file.read()
+            tmp.write(content)
+            tmp_path = tmp.name
+        
+        # Solve all questions
+        result = enhanced_pipeline.solve_all_questions(tmp_path)
+        
+        # Clean up
+        os.unlink(tmp_path)
+        
+        return result
+        
+    except Exception as e:
+        if 'tmp_path' in locals() and os.path.exists(tmp_path):
             os.unlink(tmp_path)
         raise HTTPException(status_code=500, detail=str(e))
 

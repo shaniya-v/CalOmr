@@ -15,10 +15,10 @@ class Config:
     SUPABASE_KEY = os.getenv('SUPABASE_KEY')
     
     # Groq Models
-    GROQ_VISION_MODEL = "llama-3.2-90b-vision-preview"
+    GROQ_VISION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"  # Updated: llama-3.2-90b-vision-preview deprecated
     GROQ_REASONING_MODEL = "llama-3.3-70b-versatile"
     GROQ_FAST_MODEL = "llama-3.1-8b-instant"
-    GROQ_MATH_MODEL = "llama-3.1-70b-versatile"
+    GROQ_MATH_MODEL = "llama-3.3-70b-versatile"  # Updated: llama-3.1-70b-versatile deprecated
     
     # Embedding Model
     EMBEDDING_MODEL = "all-MiniLM-L6-v2"
