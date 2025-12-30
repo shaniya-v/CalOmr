@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 50%, #87ceeb 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  background-color: rgba(135, 206, 235, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Scrollbar styling for sky blue theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(135, 206, 235, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(135, 206, 235, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(135, 206, 235, 0.8);
+}
