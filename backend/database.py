@@ -5,7 +5,7 @@ from supabase import create_client, Client
 from sentence_transformers import SentenceTransformer
 from typing import Dict, List, Optional
 import numpy as np
-from config import Config
+from .config import Config
 import time
 
 

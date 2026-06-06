@@ -21,7 +21,15 @@ Image Upload → Groq Vision (Parse) → Vector Search (Supabase)
                             Groq Solver → Store in DB → Return new solution
 ```
 
-## 🚀 Getting Started
+## � Repository Layout
+
+- `backend/` — core backend package and API application
+- `frontend/` — React UI source code
+- `scripts/` — utility scripts for examples, database management, and setup tools
+- `docs/` — project documentation and quickstart guides
+- `deployment/` — deployment and database setup resources
+
+## �🚀 Getting Started
 
 ### Prerequisites
 
@@ -100,6 +108,8 @@ CREATE INDEX ON questions (question_hash);
 ```
 
 3. Get your Supabase URL and Key from Settings → API
+
+> Tip: The same Supabase schema setup is also available in `deployment/supabase_setup.sql`.
 
 ### Configuration
 

@@ -5,10 +5,10 @@ import time
 from typing import Dict, List
 from pathlib import Path
 
-from multi_question_solver import GroqMultiQuestionSolver
-from web_search import WebSearcher
-from database import DatabaseManager
-from config import Config
+from .multi_question_solver import GroqMultiQuestionSolver
+from .web_search import WebSearcher
+from .database import DatabaseManager
+from .config import Config
 
 
 class EnhancedCalOmrPipeline:

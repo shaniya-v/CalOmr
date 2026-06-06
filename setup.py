@@ -94,7 +94,7 @@ def test_connection():
     print("Testing connections...")
     
     try:
-        from config import Config
+        from backend.config import Config
         Config.validate()
         print("✓ Configuration valid")
         

@@ -1,7 +1,7 @@
 """
 Example usage and testing script for CalOmr
 """
-from main import CalOmrPipeline
+from backend.main import CalOmrPipeline
 import sys
 
 
@@ -85,7 +85,7 @@ def test_connection():
     print("-" * 60)
     
     try:
-        from config import Config
+        from backend.config import Config
         print(f"✓ Groq API Key: {Config.GROQ_API_KEY[:20]}...")
         print(f"✓ Supabase URL: {Config.SUPABASE_URL}")
         print(f"✓ Configuration valid")

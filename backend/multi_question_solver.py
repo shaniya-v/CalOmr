@@ -6,7 +6,7 @@ from typing import Dict, List, Optional
 import json
 import base64
 import re
-from config import Config
+from .config import Config
 
 
 class GroqMultiQuestionSolver:

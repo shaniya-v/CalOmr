@@ -3,7 +3,7 @@
 Clear the database cache to remove incorrect cached answers
 """
 from supabase import create_client
-from config import Config
+from backend.config import Config
 
 print("🗑️  Clearing database cache...")
 print(f"   Supabase URL: {Config.SUPABASE_URL}")
